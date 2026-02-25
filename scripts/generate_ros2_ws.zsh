@@ -9,7 +9,10 @@
 
 # Look for the parent directory of this script
 # which should be the root of the project 
-PARENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P)/..
+SCRIPT_PATH="${BASH_SOURCE[0]:-$0}"
+DIR_SCRIPT=$(cd "$(dirname "$SCRIPT_PATH")" && pwd -P)
+PARENT_PATH="$DIR_SCRIPT/.."
+
 cd "$PARENT_PATH"
 
 # Assign the first argument ($1) to ws_name.

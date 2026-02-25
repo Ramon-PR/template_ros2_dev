@@ -13,7 +13,10 @@
 
 # Look for the parent directory of this script
 # which should be the root of the project 
-PARENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P)/..
+SCRIPT_PATH="${BASH_SOURCE[0]:-$0}"
+DIR_SCRIPT=$(cd "$(dirname "$SCRIPT_PATH")" && pwd -P)
+PARENT_PATH="$DIR_SCRIPT/.."
+
 cd "$PARENT_PATH"
 
 ws_name=${1:-new_ros2_ws}
@@ -30,7 +33,7 @@ dependency_list=(
 
 
 # If the workspace doesn't exist, create it
-zsh generate_ros2_ws.zsh $ws_name
+zsh "$PARENT_PATH/scripts/generate_ros2_ws.zsh" $ws_name
 
 # Create the ROS 2 package with the specified dependencies
 # ros2 pkg create --build-type ament_python $pkg_name --dependencies ${dependency_list[@]}

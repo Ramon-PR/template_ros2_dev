@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# It looks for the parent directory of this script, which should be the root of the project 
+PARENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P)/..
+cd "$PARENT_PATH"
+
 # Remove the template README.md file, since we will create our own.
 rm README.md
 

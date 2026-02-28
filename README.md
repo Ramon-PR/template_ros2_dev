@@ -148,15 +148,18 @@ compile the package with `colcon build`.
 
 # Summary
 
-The pipeline to create and compile a ROS2 package would be: 1. Create
-the ROS2 workspace with `generate_ros2_ws.zsh [workspace_name]` 2.
-Create the ROS2 package with
+The pipeline to create and compile a ROS2 package would be:  
+1. Create the ROS2 workspace with `generate_ros2_ws.zsh [workspace_name]`
+2. Create the ROS2 package with
 `mk_ros2pkg_opencv.zsh [workspace_name] [package_name]` (tune it to use
-the dependencies you need). 3. Write the python code for the nodes in
+the dependencies you need).
+3. Write the python code for the nodes in
 the folder `[package_name]/[package_name]/` and name the python files
-with the same name you want for the entry point of that node. 4. Compile
-the package with `compile_pkg.sh [workspace_name] [package_name]` that
+with the same name you want for the entry point of that node.
+4. Compile the package with 
+`compile_pkg.sh [workspace_name] [package_name]` that
 will automatically write the entry points in the `setup.py` file and
-compile the package with `colcon build`. 5. Test your nodes by sourcing
+compile the package with `colcon build`.
+5. Test your nodes by sourcing
 the workspace and running the nodes with
 `ros2 run [package_name] [name_entry_point_node]` or with launch files.

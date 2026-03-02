@@ -77,15 +77,17 @@ $ python3 camera_subscriber.py # python
 
 This approach is useful for testing and development, but for a more
 robust solution, the ROS2 package should be compiled using `colcon`.
-Compiling with `colcon` among other benefits, includes: + The use of
-`ros2 run [package_name] [node_name]` to run the nodes. + The use of
-launch files, to launch multiple nodes at the same time. + Remap and
-parameterization capabilities (without touching the python code, we can
-change the topic names, or the parameters of the nodes when launching
-them). + Once installed and sourced the workspace, we can run the nodes
-from any place in the system. + It handle nodes both in python and C++
-in the same workspace. + You can use other ROS2 tools like `rosdep` to
-check and install dependencies.
+Compiling with `colcon`, among other benefits, includes:  
++ The use of `ros2 run [package_name] [node_name]` to run the nodes.  
++ The use of launch files to launch multiple nodes at the same time.
++ Remap and parameterization capabilities (without touching the 
+python code, we can change the topic names, or the parameters of the 
+nodes when launching them).
++ Once installed and sourced the workspace, we can run the nodes
+from any place in the system.
++ It handle nodes both in python and C++ in the same workspace.
++ You can use other ROS2 tools like `rosdep` to check and install
+dependencies.
 
 To be able to compile ros2 packages with python files, there are two
 files to check and edit if necessary: - package.xml: to check if the

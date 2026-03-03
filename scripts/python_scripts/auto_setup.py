@@ -1,5 +1,7 @@
+from importlib.resources import path
 import os
 import glob
+from pathlib import Path
 
 """ 
 This script automatically updates the setup.py file by detecting all Python modules
@@ -23,8 +25,9 @@ def generate_setup():
     # 1. Identify the package name (the subdirectory containing __init__.py)
     pkg_name = [d for d in os.listdir('.') if os.path.isdir(d) and os.path.exists(os.path.join(d, '__init__.py'))][0]
     
-    # 2. Search for .py files (excluding __init__.py)
-    py_files = [os.path.basename(f)[:-3] for f in glob.glob(f"{pkg_name}/*.py") if "__init__" not in f]
+    # 2. Search for .py files (excluding __init__.py and any file starting with underscore)
+    pkg_path = Path(pkg_name)
+    py_files = [p.stem for p in pkg_path.glob("*.py") if not p.name.startswith("_")]
     
     # 3. Generate the entry_points lines
     entry_points_lines = [f"            '{name} = {pkg_name}.{name}:main'," for name in py_files]

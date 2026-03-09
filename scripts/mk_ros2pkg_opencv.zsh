@@ -40,14 +40,28 @@ zsh "$PARENT_PATH/scripts/generate_ros2_ws.zsh" $ws_name
 cd "$ws_name/src"
 
 if [[ ! -d "$pkg_name" ]]; then
-    print "Package $pkg_name does not exist. Creating..."
+    echo "Package $pkg_name does not exist. Creating..."
     
     ros2 pkg create --build-type ament_python "$pkg_name" \
         --dependencies "${dependency_list[@]}"
     
-    [[ $? -eq 0 ]] && print "Package $pkg_name created successfully."
+    [[ $? -eq 0 ]] && echo "Package $pkg_name created successfully."
 else
-    print "Package $pkg_name already exists."
+    echo "Package $pkg_name already exists."
 fi
 
+# Create launch folder for launch files
+if [[ ! -d "$pkg_name/launch" ]]; then
+    mkdir "$pkg_name/launch"
+    echo "Launch folder created in $pkg_name."
+else
+    echo "Launch folder already exists in $pkg_name."
+fi
 
+# Create config folder for config files (.yaml files)
+if [[ ! -d "$pkg_name/config" ]]; then
+    mkdir "$pkg_name/config"
+    echo "Config folder created in $pkg_name."
+else
+    echo "Config folder already exists in $pkg_name."
+fi

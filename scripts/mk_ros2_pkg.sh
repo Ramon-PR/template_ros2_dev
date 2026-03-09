@@ -7,6 +7,9 @@ pkg_name=${2:-pkg_ros2_opencv}
 deps_file=${3:-camera_opencv.txt}
 echo "Build a ROS2 workspace $ws_name with a package $pkg_name and dependencies from $deps_file"
 
+LICENSE="Apache-2.0"
+
+
 # Relevant paths
 SCRIPT_PATH="${BASH_SOURCE[0]:-$0}"
 DIR_SCRIPT=$(cd "$(dirname "$SCRIPT_PATH")" && pwd -P)
@@ -43,6 +46,7 @@ if [[ ! -d "$pkg_name" ]]; then
     echo "Package $pkg_name does not exist. Creating..."
 
     ros2 pkg create --build-type ament_python "$pkg_name" \
+        --license "$LICENSE" \
         --dependencies "${dependency_list[@]}"
 
     [[ $? -eq 0 ]] && echo "Package $pkg_name created successfully."
@@ -60,7 +64,7 @@ else
 fi
 
 # After creating the launch folder, copy the launch template to the package
-cp "$DIR_SCRIPT/python_scripts/camera_foxglove_launch.py" "$pkg_name/launch/"
+cp "$DIR_SCRIPT/launch_files/"*launch.(py|xml|yaml) "$pkg_name/launch/"
 echo "Launch script copied to $pkg_name/launch."
 
 

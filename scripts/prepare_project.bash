@@ -21,3 +21,5 @@ rm pyproject.toml
 # uv run nbdev-new to use the nbdev locally installed by uv in .venv
 uv run nbdev-new
 
+# Add quarto to the project, which is needed for the documentation.
+uv run nbdev-install-quarto

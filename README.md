@@ -58,7 +58,12 @@ project. This command creates:
 And once it had the pyproject.toml file, it lets you add dependencies
 with `uv add <package-name>`.
 
-### Install nbdev
+### Install uv in your system
+``` sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### Install nbdev in your local environment
 
 Once we have the `uv` project initialized, we can proceed to install
 nbdev.

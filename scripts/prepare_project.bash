@@ -27,7 +27,7 @@ echo "Changing to the project root directory: $PARENT_PATH"
 cd "$PARENT_PATH"
 
 # Remove the template README.md file, since we will create our own.
-rm README.md
+mv README.md README_template_ros2dev.md
 
 # Start a uv project where I can easily install dependencies. It creates a pyproject.toml file
 echo "Starting a uv project with system python version: $PYTHON_VERSION"
@@ -58,3 +58,6 @@ uv run nbdev-new
 # Add packages to run the notebooks in ipykernels
 echo "Adding pip and ipykernel"
 uv add pip ipykernel --constraint system_constraints.txt
+
+# Add quarto to the project, which is needed for the documentation.
+uv run nbdev-install-quarto

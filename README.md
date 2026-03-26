@@ -23,6 +23,30 @@ source "$HOME/.local/bin/env"
 # 3. Scaffold the uv + nbdev project (venv, nbdev, quarto)
 bash scripts/prepare_project.bash
 ```
+---
+
+## 👥 If you cloned a repo created from this template (already scaffolded)
+
+When a project is first created from this template, the owner typically runs:
+
+- `scripts/basic_install.sh`
+- `scripts/prepare_project.bash`
+
+Those scripts handle the **initial scaffolding / environment bootstrap** for the project.
+
+### What YOU need to do after cloning
+
+If you cloned an existing repo (so you already have the scaffolding in git), you usually **do not need to re-run** the scaffolding scripts above.
+
+Instead, you need to create your own local virtual environment in a way that can see the **system ROS2 Python packages**, then install the project’s additional Python dependencies into that venv:
+
+```sh
+uv venv --python /usr/bin/python3 --system-site-packages
+uv sync
+```
+
+- `uv venv --system-site-packages` makes your local `.venv` able to import ROS2 Python packages provided by your system ROS2 installation.
+- `uv sync` installs the extra Python packages from `pyproject.toml` / `uv.lock` into `.venv`.
 
 ---
 
